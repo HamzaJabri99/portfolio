@@ -1,6 +1,6 @@
 <template>
   <div class="project padding">
-    <div class="wrapper--presentation">
+    <div class="wrapper--presentation" v-intersect.enter="onIntersect">
       <h1>{{ project.title }}</h1>
       <p>{{ project.description }}</p>
       <div class="wrapper--img">
@@ -16,7 +16,7 @@
       <p>{{ project.techno }}</p>
     </div>
     <div class="separator"></div>
-    <div class="wrapper--content ">
+    <div class="wrapper--content" v-intersect.enter="onIntersect">
       <!-- <img
           v-for="(img, index) in project.project_img"
           :key="index"
@@ -26,22 +26,22 @@
       <div class="wrapper--img wrapper--first--img"  v-intersect.enter="onIntersect">
         <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
       </div>
-      <div class="wrapper--second--third--img">
-        <div class="wrapper--img" v-intersect.enter="onIntersect">
+      <div class="wrapper--second--third--img" v-intersect.enter="onIntersect">
+        <div class="wrapper--img" >
           <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
         </div>
         <div class="wrapper--img" v-intersect.enter="onIntersect">
           <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
         </div>
       </div>
-      <div class="wrapper--four--img"> 
+      <div class="wrapper--four--img" v-intersect.enter="onIntersect"> 
         <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
          </div>
-               <div class="wrapper--five--img"> 
+               <div class="wrapper--five--img" v-intersect.enter="onIntersect"> 
         <img  :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
          </div>
     </div>
-    <div class="wrapper--other-projects">
+    <div class="wrapper--other-projects" v-intersect.enter="onIntersect">
       <div class="wrapper--previous--project wrapper--other--project">
         <nuxt-link
           :to="{
