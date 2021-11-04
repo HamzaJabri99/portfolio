@@ -1,0 +1,81 @@
+//Variables
+
+html,
+body {
+  background-color: $grey;
+  margin: 0;
+  padding: 0;
+  
+  /* width */
+// ::-webkit-scrollbar {
+//   width: 9px;
+  
+// }
+
+// /* Track */
+// ::-webkit-scrollbar-track {
+//   background: #f1f1f1; 
+// }
+ 
+// /* Handle */
+// ::-webkit-scrollbar-thumb {
+//   background: #888; 
+// }
+
+// /* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//   background: #555; 
+// }
+
+}
+body {
+  font-family: Text;
+  
+}
+h1{
+  font-family: 'Title';
+  margin: 0px;
+  font-size: 42px;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  @media screen and (min-width:$tablet){
+    font-size: 62px;
+  }
+  @media screen and(min-width: $laptop) {
+    font-size: 120px;
+  }
+
+}
+
+h2{
+  font-family: Text;
+  text-transform: uppercase;
+  margin: 5px 0px;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+p{
+  font-size: 18px;
+  margin: 5px 0px;
+  letter-spacing: 1px;
+  line-height: 20px;
+  // text-transform: capitalize;
+  // font-weight: 600;
+  // font-family: Title;
+}
+a{
+  // font-family: Title;
+  // font-weight: bolder;
+  text-decoration: none;
+  color: $black;
+}
+.padding{
+  padding: 80px 20px;
+  @media screen and (min-width: $tablet) {
+    padding: 150px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+

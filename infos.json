@@ -1,0 +1,39 @@
+[{
+    "name": "skills",
+    "contents": [
+        {
+            "title": "Javascript",
+            "content": "Vue.js, React.js, Node.js"
+        },
+        {
+            "title": "PHP",
+            "content": "Laravel"
+        },
+        {
+            "title": "Preprocessor",
+            "content": "Css, Sass"
+        },
+        {
+            "title": "Workflow",
+            "content": "Git, Npm"
+        },
+        {
+            "title": "Other",
+            "content": "Adobe XD, Figma, Adobe Ae"
+        }
+    ]
+},
+{
+    "name": "social",
+    "contents": [
+        {
+            "title": "GitHub",
+            "content": "https://github.com/HamzaJabri99"
+        },
+        {
+            "title": "Dribbble",
+            "content": "https://dribbble.com/jabriHamza"
+        }
+    ]
+} 
+]
