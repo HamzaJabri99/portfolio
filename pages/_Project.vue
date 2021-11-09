@@ -1,9 +1,10 @@
 <template>
-  <div class="project padding">
-    <div class="wrapper--presentation" v-intersect.enter="onIntersect">
+<div data-scroll-container>
+  <div class="project padding" data-scroll-section	 >
+    <div class="wrapper--presentation" >
       <h1>{{ project.title }}</h1>
       <p>{{ project.description }}</p>
-      <div class="wrapper--img">
+      <div class="wrapper--img" >
         <img
           class="poster"
           :src="require(`~/assets/imgs/${this.project.poster}`)"
@@ -16,32 +17,38 @@
       <p>{{ project.techno }}</p>
     </div>
     <div class="separator"></div>
-    <div class="wrapper--content" v-intersect.enter="onIntersect">
+    <div class="wrapper--content" >
       <!-- <img
           v-for="(img, index) in project.project_img"
           :key="index"
           :src="require(`~/assets/imgs/${project.poster}`)"
           alt=""
         /> -->
-      <div class="wrapper--img wrapper--first--img"  v-intersect.enter="onIntersect">
+      <div class="wrapper--img wrapper--first--img" v-intersect="onIntersect" >
         <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
       </div>
-      <div class="wrapper--second--third--img" v-intersect.enter="onIntersect">
-        <div class="wrapper--img" >
+      <div class="wrapper--second--third--img">
+        <div class="wrapper--img" v-intersect="onIntersect">
           <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
         </div>
-        <div class="wrapper--img" v-intersect.enter="onIntersect">
+        <div class="wrapper--img" v-intersect="onIntersect">
           <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
         </div>
       </div>
-      <div class="wrapper--four--img" v-intersect.enter="onIntersect"> 
-        <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
+      <div class="wrapper--four--img" > 
+        <div class="wrapper--img" v-intersect="onIntersect">
+          <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
+        </div>
+        
          </div>
-               <div class="wrapper--five--img" v-intersect.enter="onIntersect"> 
-        <img  :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
+               <div class="wrapper--five--img" > 
+                 <div class="wrapper--img" v-intersect="onIntersect">
+                   <img  :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
+                 </div>
+        
          </div>
     </div>
-    <div class="wrapper--other-projects" v-intersect.enter="onIntersect">
+    <div class="wrapper--other-projects">
       <div class="wrapper--previous--project wrapper--other--project">
         <nuxt-link
           :to="{
@@ -82,11 +89,12 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
 import projects from "../projects.json";
-import LocomotiveScroll from 'locomotive-scroll';
+ 	  import LocomotiveScroll from 'locomotive-scroll';
 import gsap from 'gsap'
 export default {
   name: "Project",
@@ -109,12 +117,10 @@ export default {
     this.getProject();
   },
   mounted(){
-    
-    
-    const scroll = new LocomotiveScroll({
-    el: document.querySelector('body'),
-    smooth: true
-});
+//     const scroll = new LocomotiveScroll({
+//     el: document.querySelector('[data-scroll-container]'),
+//     smooth: true
+//  });
 
     
   },
