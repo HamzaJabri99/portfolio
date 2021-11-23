@@ -63,9 +63,9 @@ export default {
 .info--card {
   
   color: #fff;
-  text-align: center;
+  
   .title {
-
+    text-align: left;
     font-size: 20px;
     color: red;
     margin-top: 40px;
@@ -80,6 +80,7 @@ export default {
       font-size: 20px;
       font-weight: bold;
       line-height: 20px;
+ 
       // margin: 1rem 0;
     }
     .separator{
@@ -91,6 +92,7 @@ export default {
     }
     .year{
       font-size: 15px;
+      color: grey;
     }
     .content{
       
@@ -99,6 +101,7 @@ export default {
            line-height: 25px;
            opacity:0;
      transform:translateX(-40px);
+     
     }
 
   }

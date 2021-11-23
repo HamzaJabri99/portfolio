@@ -32,6 +32,10 @@ body {
   font-family: Text;
   
 }
+::selection {
+  background: red; 
+  content: '';/* WebKit/Blink Browsers */
+}
 h1{
   font-family: 'Title';
   margin: 0px;
@@ -47,7 +51,9 @@ h1{
   }
 
 }
-
+h1:selection{
+  background-color: red;
+}
 h2{
   font-family: Text;
   text-transform: uppercase;

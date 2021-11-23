@@ -126,7 +126,7 @@ export default {
             },
             other: {
               title: "Other",
-              content: ["Git", "Figma", "AdobeXD"]
+              content: ["Git", "Figma", "AdobeXD", "WordPress"]
             }
           }
         },
@@ -175,8 +175,8 @@ export default {
             stagger: 0.5,
             duration: 0.5,
             y: "0px",
-            opacity: 1
-            
+            opacity: 1,
+            delay:0.2
           });
       }
     }
