@@ -19,7 +19,12 @@
       </p>
     </div>
     <div class="wrapper--career">
-      <InfoCard v-for="(career, i) in careers" :key="i" :career="career" v-intersect="onIntersect"/>
+      <InfoCard
+        v-for="(career, i) in careers"
+        :key="i"
+        :career="career"
+        v-intersect="{ callback: onIntersect, options: { threshold: 0.5 } }"
+      />
       <!-- <div class="download">
       <button>French CV</button>
       <button>French CV</button>
@@ -33,29 +38,42 @@
         <button>TÉLECHARGER CV</button>
       </div>
     </div>
-    <div class="wrapper--infos ">
-      <div class="infos">
-        <p class="title" v-intersect="onIntersect">{{ infos.skills.title }}</p>
+    <div
+      class="wrapper--infos"
+      v-intersect="{ callback: onIntersect, options: { threshold: 0.3 } }"
+    >
+      <div class="infos" v-intersect="onIntersect">
+        <p class="title">{{ infos.skills.title }}</p>
 
         <div v-for="(content, i) in infos.skills.content" :key="i">
           <h3>{{ content.title }}</h3>
           <div class="dd">
-            <p v-for="(contents, i) in content.content" :key="i" v-intersect="onIntersectOpa">
+            <p
+              v-for="(contents, i) in content.content"
+              :key="i"
+              v-intersect="onIntersect"
+            >
               {{ contents }}
             </p>
           </div>
         </div>
       </div>
-      <div class="links ">
-        <p class="title " v-intersect="onIntersect">{{ infos.links.link }}</p>
+      <div
+        class="links"
+        v-intersect="{ callback: onIntersect, options: { threshold: 0.3 } }"
+      >
+        <p class="title">{{ infos.links.link }}</p>
         <div class="link" v-for="(link, i) in infos.links.content" :key="i">
           <h3 v-intersect="onIntersectOpa">{{ link.title }}</h3>
-          <p v-intersect="onIntersectOpa">{{ link.site }}</p>
+
+          <a :href="link.site" v-intersect="onIntersectOpa" target="blank">
+            {{ link.site.slice(8) }}
+          </a>
         </div>
       </div>
     </div>
 
-    <div class="wrapper--contact">
+    <div class="wrapper--contact" v-intersect="onIntersect">
       <h1>Interested?</h1>
       <h1>don't hesitate to contact me !</h1>
       <p>
@@ -64,7 +82,11 @@
       </p>
       <!-- <a to="mailto:jabri.oldd@gmail">Contact Me</a> -->
     </div>
-    <router-link to="/Contact">Contact Me</router-link>
+    <router-link to="/Contact" class="con"
+      >Contact Me
+      <div class="under"></div
+    ></router-link>
+
     <!-- <p class="inspired">Made By Hamza</p> -->
   </div>
 </template>
@@ -154,30 +176,64 @@ export default {
   methods: {
     onIntersect(observer) {
       this.isVisible = observer.isIntersecting;
-      let target = observer.entries[0].target;
+      const target = observer.entries[0].target;
       if (this.isVisible) {
-        gsap
-          
-          .to(target, {
-            stagger: 0.5,
-            duration: 2,
-            x: "0px",
-            opacity: 1
-          });
-      }
-    },
-    onIntersectOpa(observer){
-      this.isVisible = observer.isIntersecting;
-      let target = observer.entries[0].target;
-      if (this.isVisible) {
-        gsap
-          .to(target, {
-            stagger: 0.5,
-            duration: 0.5,
-            y: "0px",
-            opacity: 1,
-            delay:0.2
-          });
+        switch (target.className) {
+          case "info--card":
+            gsap
+              .timeline()
+              .to(
+                target.querySelectorAll(
+                  ".title, .subtitle, .content, .separator"
+                ),
+                {
+                  stagger: 0.25,
+                  duration: 1.1,
+                  x: "0px",
+                  opacity: 1,
+                  ease: "expo.out"
+                }
+              );
+            break;
+          case "wrapper--infos":
+            {
+              gsap
+                .timeline()
+                .to(target.querySelectorAll(".infos, p, a, .title"), {
+                  stagger: 0.1,
+                  duration: 0.5,
+                  x: "0px",
+                  y: "0px",
+                  opacity: 1,
+                  ease: "expo.inOut"
+                });
+            }
+            break;
+          case "links":
+            {
+              gsap
+                .timeline()
+                .to(target.querySelectorAll(".links, .title, .link, h3, a"), {
+                  stagger: 0.1,
+                  duration: 0.5,
+                  x: "0px",
+                  y: "0px",
+                  opacity: 1,
+                  ease: "expo.inOut"
+                });
+            }
+            break;
+          case "wrapper--contact": {
+            gsap.timeline().to(target.querySelectorAll("h1, p"), {
+              stagger: 0.1,
+              duration: 0.5,
+              x: "0px",
+              y: "0px",
+              opacity: 1,
+              ease: "expo.inOut"
+            });
+          }
+        }
       }
     }
   }
@@ -242,14 +298,19 @@ export default {
   }
   .wrapper--contact {
     width: 100%;
+
     line-height: 50px;
     text-align: center;
     @media screen and(min-width:$laptop) {
       h1 {
+        transform: translateX(100px);
         text-align: center;
+        opacity: 0;
         @media screen and (min-width: $laptop) {
           margin: 30px 0px;
           line-height: 115px;
+          opacity: 0;
+          transform: translateX(100px);
         }
       }
       p {
@@ -259,6 +320,8 @@ export default {
           letter-spacing: 2px;
           line-height: 35px;
           text-align: center;
+          transform: translateX(100px);
+          opacity: 0;
         }
       }
     }
@@ -387,34 +450,11 @@ export default {
     // }
   }
   .link {
-
-    p{
-      
-    font-size: 14px;
-    padding: 10px;
-    width: 100%;
-    background: #fafafa;
-      opacity: 1;
-      transition: all 0.3s ease-in-out;
-      margin: 5px;
-      border-radius: 5px;
-      border-width: 1.5px;
-      box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.1);
-      color: rgb(0, 0, 0, 0.9);
-      transform: translateY(-100px);
-      opacity: 0;
-      &:hover{
-       box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.3);
-       cursor: default;
-    }
-    }
-  
- 
-    
-  @media screen and (min-width:$laptop){
-    p {
-      font-size: 18px;
-       padding: 10px;
+    p,
+    a {
+      font-size: 14px;
+      padding: 10px;
+      width: 100%;
       background: #fafafa;
       opacity: 1;
       transition: all 0.3s ease-in-out;
@@ -425,14 +465,33 @@ export default {
       color: rgb(0, 0, 0, 0.9);
       transform: translateY(-100px);
       opacity: 0;
-      &:hover{
-       box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.3);
-       cursor: default;
+      &:hover {
+        box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.3);
+        cursor: default;
+      }
     }
+
+    @media screen and (min-width: $laptop) {
+      a {
+        font-size: 20px;
+        font-weight: 200;
+        padding: 10px;
+        background: #fafafa;
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+        margin: 5px;
+        border-radius: 5px;
+        border-width: 1.5px;
+        box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.1);
+        color: rgb(0, 0, 0, 0.9);
+        transform: translateY(-100px);
+        opacity: 0;
+        &:hover {
+          box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.3);
+          cursor: pointer;
+        }
+      }
     }
-    }
-       
-    
   }
   .dd {
     display: flex;
@@ -442,33 +501,8 @@ export default {
     justify-content: center;
     letter-spacing: 1px;
     width: 100%;
-    p{
-    font-size: 14px;
-    padding: 10px;
-    background: #fafafa;
-      opacity: 1;
-      transition: all 0.3s ease-in-out;
-      margin: 5px;
-      border-radius: 5px;
-      border-width: 1.5px;
-      box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.1);
-      color: rgb(0, 0, 0, 0.9);
-      transform: translateY(-100px);
-      opacity: 0;
-      &:hover{
-       box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.3);
-       cursor: default;
-    }
-    }
-    @media screen and(min-width: $laptop) {
-      
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      letter-spacing: 1px;
-      padding-bottom: 15px;
-      p {
-        font-size: 18px;
+    p {
+      font-size: 14px;
       padding: 10px;
       background: #fafafa;
       opacity: 1;
@@ -480,13 +514,36 @@ export default {
       color: rgb(0, 0, 0, 0.9);
       transform: translateY(-100px);
       opacity: 0;
-      &:hover{
-       box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.3);
-       cursor: default;
+      &:hover {
+        box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.3);
+        cursor: default;
+      }
     }
+    @media screen and(min-width: $laptop) {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      letter-spacing: 1px;
+      padding-bottom: 15px;
+      p {
+        font-size: 18px;
+        padding: 10px;
+        background: #fafafa;
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+        margin: 5px;
+        border-radius: 5px;
+        border-width: 1.5px;
+        box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.1);
+        color: rgb(0, 0, 0, 0.9);
+        transform: translateY(-100px);
+        opacity: 0;
+        &:hover {
+          box-shadow: 5px 15px 15px rgba($color: #000000, $alpha: 0.3);
+          cursor: default;
+        }
+      }
     }
-    }
-    
   }
   .links,
   .infos {
@@ -525,15 +582,22 @@ export default {
     padding: 4rem 3rem;
     @media screen and (min-width: $laptop) {
       padding: 10px 5rem;
-     
     }
   }
   .infos {
     padding: 3rem 3rem;
     @media screen and (min-width: $laptop) {
       padding: 10px 30px;
-      
     }
+  }
+  .con {
+    margin-top: 4rem;
+  }
+  .under {
+    background: #ff93a3;
+    height: 2px;
+    text-align: center;
+    width: 100%;
   }
 }
 </style>

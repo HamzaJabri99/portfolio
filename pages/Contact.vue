@@ -1,78 +1,102 @@
 <template>
   <div id="overlay" class="overlay">
-    <form action="https://formsubmit.co/e673b9a91f7a24d38d22e160d6c1ff7c" method="POST" >
+    <form
+      ref="form"
+      @submit="sendContact"
+      action="https://formsubmit.co/e673b9a91f7a24d38d22e160d6c1ff7c"
+      method="POST"
+      autocomplete="off"
+    >
       <h1>Send a Message</h1>
 
       <label for="name">Name:</label>
-      <input type="text" name="name" id="name" placeholder="Your Name" v-model="contact.name" required>
+      <input
+        type="text"
+        name="name"
+        id="name"
+        placeholder="Your Name"
+        v-model="contact.name"
+        required
+      />
       <small class="error"></small>
 
-       <label for="email">Email:</label>
-      <input type="email" name="email" id="email" placeholder="Your E-mail" v-model="contact.email" required>
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Your E-mail"
+        v-model="contact.email"
+        required
+      />
       <small class="error"></small>
 
-       <label for="message">Message:</label>
-      <textarea type="text" name="message" id="message" placeholder="Your Message" rows="6" v-model="contact.message" required></textarea>
+      <label for="message">Message:</label>
+      <textarea
+        type="text"
+        name="message"
+        id="message"
+        placeholder="Your Message"
+        rows="6"
+        v-model="contact.message"
+        required
+      ></textarea>
       <small class="error"></small>
       <div class="center">
-        <input type="submit" name="" id="" value="Send">
+        <input type="submit" name="" id="" value="Send" />
         <p id="success"></p>
       </div>
-      <input type="hidden" name="_next" value="http://localhost:3000/Thanks">
-      <input type="hidden" name="_captcha" value="false">
-
-
+      <input type="hidden" name="_next" value="http://localhost:3000/Thanks" />
+      <input type="hidden" name="_captcha" value="false" />
     </form>
   </div>
 </template>
 <script>
-import axios from 'axios';
-export default{
-  
-data(){
-  return{
-contact: {
-			name: '',
-			email: '',
-			message: '',
+import axios from "axios";
+export default {
+  data() {
+    return {
+      contact: {
+        name: "",
+        email: "",
+        message: ""
+      },
+      isSending: false
+    };
   },
-  isSending: false
-  }
-  
-},
 
-methods:{
-  	sendContact(){
-      axios.post('/api/send-contact',{
-       'name': this.contact.name,
-       'email':this.contact.email,
-       'message':this.contact.message
-      }).then(res=>{
-        console.log(res);
-      }).catch(e=>{
-        console.log(e);
-      })
+  methods: {
+    sendContact(e) {
+      var usernamecheck = /^[^~`^<>]+$/;
+      e.preventDefault();
+      if (this.contact.name.length <= 2) {
+        alert("name must be at elast 3 characters");
+        return;
+      }
+      if (!this.contact.name.match(usernamecheck)) {
+        alert("message must have valid character :D");
+        return;
+      } else {
+        this.$refs.form.submit();
+      }
     }
-}
-}
-
+  }
+};
 </script>
-<style >
-#overlay{
+<style>
+#overlay {
   width: 100%;
   height: 100%;
   position: fixed;
-
 }
-.overlay h1{
-font-size: 30px;
-text-align: center;
-margin: 0;
+.overlay h1 {
+  font-size: 30px;
+  text-align: center;
+  margin: 0;
   font-family: arial;
 }
 
-form{
-
+form {
   max-width: 550px;
   width: 90%;
   background: white;
@@ -81,11 +105,12 @@ form{
   border-radius: 4px;
   box-sizing: border-box;
 }
-label{
+label {
   display: block;
   margin: 20px 0;
 }
-input, textarea{
+input,
+textarea {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
@@ -94,35 +119,36 @@ input, textarea{
   border: none;
   border-bottom: solid 1px #d3d3d3;
 }
-input:focus,textarea:focus{
-border-bottom: 1px solid rgba(255,0,106);
+input:focus,
+textarea:focus {
+  border-bottom: 1px solid rgba(255, 0, 106);
 }
-textarea::-webkit-scrollbar{
+textarea::-webkit-scrollbar {
   width: 4px;
 }
-textarea::-webkit-scrollbar-thumb{
-  background-color: rgb(255,0,10);
+textarea::-webkit-scrollbar-thumb {
+  background-color: rgb(255, 0, 10);
 }
-.center{
+.center {
   text-align: center;
 }
-input[type="submit"]{
-margin-top: 30px;
-width: 90%;
-max-width: 200px;
-background: linear-gradient(to right, rgb(136, 134, 134), rgb(143, 143, 143));
-color: white;
-font-size: 17px;
-cursor: pointer;
-border-radius: 3px;
+input[type="submit"] {
+  margin-top: 30px;
+  width: 90%;
+  max-width: 200px;
+  background: linear-gradient(to right, rgb(136, 134, 134), rgb(143, 143, 143));
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 3px;
 }
-.error{
+.error {
   color: red;
 }
-.error-border{
+.error-border {
   border-bottom: 1px solid red;
 }
-#success{
+#success {
   color: #28a745;
 }
 </style>

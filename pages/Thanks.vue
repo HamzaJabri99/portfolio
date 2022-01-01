@@ -18,5 +18,8 @@
     font-size: 40px;
     margin: 15rem 0 2rem auto;
     }
+    p{
+        font-family: Arial, Helvetica, sans-serif;
+    }
 }
 </style>
