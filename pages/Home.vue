@@ -1,6 +1,6 @@
 <template>
   <!-- <Header></Header> -->
-  <div class="home padding">
+  <div class="home padding" v-intersect="onIntersect">
     <div class="wrapper--imgs">
       <div
         :class="`wrapper--img img-${index}`"
@@ -200,6 +200,17 @@ export default {
           skewY: "0deg",
           ease: "expo.inOut"
         });
+    },
+    onIntersect(observer) {
+      this.isVisible = observer.isIntersecting;
+      let target = observer.entries[0].target;
+      if (this.isVisible) {
+        gsap.to(target, {
+          opacity: 1.2,
+          duration: 1,
+          stagger: 1
+        });
+      }
     }
   }
 };
@@ -207,6 +218,7 @@ export default {
 
 <style lang="scss">
 .home {
+  opacity: 0;
   height: calc(70vh - 80px);
   display: flex;
   align-items: center;

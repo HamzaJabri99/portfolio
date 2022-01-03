@@ -1,16 +1,20 @@
 <template>
-  <div class="about padding">
-    <div class="wrapper--presentation">
-      <div class="wrapper--title">
-        <p>Buenos Días, It's Me</p>
-        <h1>Jabri</h1>
-        <h1>Hamza</h1>
+  <div class="about padding" v-intersect="onIntersect">
+    <div class="wrapper--presentation" v-intersect="onIntersect">
+      <div class="wrapper--title" v-intersect="onIntersect">
+        <p v-intersect="onIntersect">Buenos Días, It's Me</p>
+        <Title title="Jabri" v-intersect="onIntersectT" />
+        <Title title="Hamza" v-intersect="onIntersectT" />
       </div>
 
-      <div class="wrapper--img">
-        <img :src="require(`~/assets/imgs/5252.jpg`)" alt="" />
+      <div class="wrapper--img" v-intersect="onIntersect">
+        <img
+          :src="require(`~/assets/imgs/5252.jpg`)"
+          alt=""
+          v-intersect="onIntersect"
+        />
       </div>
-      <p class="presentation--pitch">
+      <p class="presentation--pitch" v-intersect="onIntersect">
         junior fullstack developer, Recently graduated as a software and website
         developer, I learnt to code from an early age in various computer
         languages, I master the different technical steps of creating a web
@@ -64,9 +68,9 @@
       >
         <p class="title">{{ infos.links.link }}</p>
         <div class="link" v-for="(link, i) in infos.links.content" :key="i">
-          <h3 v-intersect="onIntersectOpa">{{ link.title }}</h3>
+          <h3 v-intersect="onIntersect">{{ link.title }}</h3>
 
-          <a :href="link.site" v-intersect="onIntersectOpa" target="blank">
+          <a :href="link.site" v-intersect="onIntersect" target="blank">
             {{ link.site.slice(8) }}
           </a>
         </div>
@@ -98,6 +102,7 @@ export default {
   name: "About",
   data() {
     return {
+      mounted_comp: true,
       careers: [
         {
           title: "Experience",
@@ -173,12 +178,52 @@ export default {
     };
   },
   components: { InfoCard },
+  mounted() {
+    this.loadPage();
+  },
   methods: {
+    onIntersectT(observer) {
+      this.isVisible = observer.isIntersecting;
+      let target = observer.entries[0].target;
+      if (this.isVisible && this.mounted_comp == true) {
+        gsap
+          .timeline()
+          .set(".title--component span.letters", {
+            skewX: "20deg",
+            skewY: "20deg",
+            y: "-120%",
+            ease: "expo.inOut"
+          })
+          .to(".title--component span.letters", {
+            duration: 1,
+            stagger: 0.02,
+            y: "0",
+            skewX: "0deg",
+            skewY: "0deg",
+            ease: "expo.inOut"
+          });
+      }
+      this.mounted_comp = false;
+    },
+    loadPage() {
+      gsap.timeline().to(".about", {
+        duration: 0.5,
+        ease: "expo.out",
+        opacity: 1
+      });
+    },
     onIntersect(observer) {
       this.isVisible = observer.isIntersecting;
       const target = observer.entries[0].target;
       if (this.isVisible) {
         switch (target.className) {
+          case "about":
+            gsap.timeline().to(".about", {
+              opacity: 1,
+              ease: "expo.inOut"
+            });
+
+            break;
           case "info--card":
             gsap
               .timeline()
@@ -236,12 +281,24 @@ export default {
         }
       }
     }
+  },
+  transition: {
+    css: false,
+    leave(el, done) {
+      gsap
+        .timeline()
+        .to(".about", {
+          opacity: 0
+        })
+        .add(() => done());
+    }
   }
 };
 </script>
 
 <style lang="scss">
 .about {
+  opacity: 0;
   @media screen and(min-width:$laptop) {
     //margin: 0px auto;
     margin-left: auto;
@@ -251,6 +308,14 @@ export default {
     p,
     h1 {
       text-align: center;
+      span {
+        font-size: 35px;
+
+        @media screen and (min-width: $laptop) {
+          font-size: 100px;
+          letter-spacing: -2px;
+        }
+      }
     }
     h1 {
       line-height: 30px;
@@ -338,6 +403,8 @@ export default {
   .wrapper--title {
     h1 {
       margin: 0.1px 0px;
+    }
+    span.letters {
     }
     p {
       margin: 2rem;

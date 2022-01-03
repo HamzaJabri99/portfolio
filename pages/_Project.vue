@@ -1,102 +1,100 @@
 <template>
-  <div>
-    <div class="project padding" v-intersect="onIntersect">
-      <div class="wrapper--presentation" v-intersect="onIntersect">
-        <Title :title="project.title" v-intersect="onIntersectT" />
-        <p class="description" v-intersect="onIntersect">
-          {{ project.description }}
-        </p>
-        <div class="wrapper--img" v-intersect="onIntersect">
-          <img
-            class="poster"
-            :src="require(`~/assets/imgs/${this.project.poster}`)"
-            alt=""
-          />
-        </div>
-        <h2 v-intersect="onIntersect">My Role</h2>
-        <p style="margin-bottom:20px" v-intersect="onIntersect">
-          {{ project.role }}
-        </p>
-        <h2 data-scroll v-intersect="onIntersect">Stack</h2>
-        <p v-intersect="onIntersect">{{ project.techno }}</p>
+  <div class="project padding" v-intersect="onIntersect">
+    <div class="wrapper--presentation" v-intersect="onIntersect">
+      <Title :title="project.title" v-intersect="onIntersectT" />
+      <p class="description" v-intersect="onIntersect">
+        {{ project.description }}
+      </p>
+      <div class="wrapper--img" v-intersect="onIntersect">
+        <img
+          class="poster"
+          :src="require(`~/assets/imgs/${this.project.poster}`)"
+          alt=""
+        />
       </div>
-      <div class="separator"></div>
-      <div class="wrapper--content" v-intersect="onIntersect">
-        <!-- <img
+      <h2 v-intersect="onIntersect">My Role</h2>
+      <p style="margin-bottom:20px" v-intersect="onIntersect">
+        {{ project.role }}
+      </p>
+      <h2 data-scroll v-intersect="onIntersect">Stack</h2>
+      <p v-intersect="onIntersect">{{ project.techno }}</p>
+    </div>
+    <div class="separator"></div>
+    <div class="wrapper--content" v-intersect="onIntersect">
+      <!-- <img
           v-for="(img, index) in project.project_img"
           :key="index"
           :src="require(`~/assets/imgs/${project.poster}`)"
           alt=""
         /> -->
-        <div class="wrapper--img wrapper--first--img" v-intersect="onIntersect">
+      <div class="wrapper--img wrapper--first--img" v-intersect="onIntersect">
+        <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
+      </div>
+      <div class="wrapper--second--third--img">
+        <div class="wrapper--img" v-intersect="onIntersect">
           <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
         </div>
-        <div class="wrapper--second--third--img">
-          <div class="wrapper--img" v-intersect="onIntersect">
-            <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
-          </div>
-          <div class="wrapper--img" v-intersect="onIntersect">
-            <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
-          </div>
-        </div>
-        <div class="wrapper--four--img">
-          <div class="wrapper--img" v-intersect="onIntersect">
-            <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
-          </div>
-        </div>
-        <div class="wrapper--five--img">
-          <div class="wrapper--img" v-intersect="onIntersect">
-            <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
-          </div>
+        <div class="wrapper--img" v-intersect="onIntersect">
+          <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
         </div>
       </div>
-      <div class="wrapper--other-projects" v-intersect="onIntersect">
-        <div
-          class="wrapper--previous--project wrapper--other--project"
-          v-intersect="onIntersect"
-        >
-          <nuxt-link
-            :to="{
-              path: `/${
-                projects_info[getOtherProjects(project_number - 1)].title
-              }`
-            }"
-          >
-            <SquareImg
-              v-intersect="onIntersect"
-              :img_path="
-                projects_info[getOtherProjects(project_number - 1)].poster
-              "
-            />
-            <h1 v-intersect="onIntersect">
-              {{ projects_info[getOtherProjects(project_number - 1)].title }}
-            </h1>
-            <p v-intersect="onIntersect">Previous</p>
-          </nuxt-link>
+      <div class="wrapper--four--img">
+        <div class="wrapper--img" v-intersect="onIntersect">
+          <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
         </div>
-        <div
-          class="wrapper--next--project wrapper--other--project"
-          v-intersect="onIntersect"
-        >
-          <nuxt-link
-            :to="{
-              path: `/${
-                projects_info[getOtherProjects(project_number + 1)].title
-              }`
-            }"
-          >
-            <SquareImg
-              v-intersect="onIntersect"
-              :img_path="
-                projects_info[getOtherProjects(project_number + 1)].poster
-              "
-            />
-            <h1 v-intersect="onIntersect">
-              {{ projects_info[getOtherProjects(project_number + 1)].title }}
-            </h1>
-            <p v-intersect="onIntersect">Next</p>
-          </nuxt-link>
+      </div>
+      <div class="wrapper--five--img">
+        <div class="wrapper--img" v-intersect="onIntersect">
+          <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
         </div>
+      </div>
+    </div>
+    <div class="wrapper--other-projects" v-intersect="onIntersect">
+      <div
+        class="wrapper--previous--project wrapper--other--project"
+        v-intersect="onIntersect"
+      >
+        <nuxt-link
+          :to="{
+            path: `/${
+              projects_info[getOtherProjects(project_number - 1)].title
+            }`
+          }"
+        >
+          <SquareImg
+            v-intersect="onIntersect"
+            :img_path="
+              projects_info[getOtherProjects(project_number - 1)].poster
+            "
+          />
+          <h1 v-intersect="onIntersect">
+            {{ projects_info[getOtherProjects(project_number - 1)].title }}
+          </h1>
+          <p v-intersect="onIntersect">Previous</p>
+        </nuxt-link>
+      </div>
+      <div
+        class="wrapper--next--project wrapper--other--project"
+        v-intersect="onIntersect"
+      >
+        <nuxt-link
+          :to="{
+            path: `/${
+              projects_info[getOtherProjects(project_number + 1)].title
+            }`
+          }"
+        >
+          <SquareImg
+            v-intersect="onIntersect"
+            :img_path="
+              projects_info[getOtherProjects(project_number + 1)].poster
+            "
+          />
+          <h1 v-intersect="onIntersect">
+            {{ projects_info[getOtherProjects(project_number + 1)].title }}
+          </h1>
+          <p v-intersect="onIntersect">Next</p>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -129,39 +127,36 @@ export default {
   },
 
   mounted() {
-    if (this.mounted_component) {
-      gsap
-        .timeline()
+    gsap
+      .timeline()
 
-        .to(
-          ".project .wrapper--presentation .title--component span",
-          {
-            duration: 1,
-            stagger: 0.01,
-            y: "0px",
-            x: "0px",
-            skewX: "0deg",
-            skewY: "0deg",
-            ease: "expo.inOut"
-          },
-          "start"
-        )
-        .to(
-          ".wrapper--presentation .description",
-          {
-            x: "0px",
-            y: "0px",
-            opacity: 1
-          },
-          "start+=0.6"
-        )
-        .to(
-          ".wrapper--presentation .wrapper--img",
-          { y: "0px", x: "0px", opacity: 1 },
-          "start+=0.6"
-        )
-        .add(() => (this.mounted_component = false));
-    }
+      .to(
+        ".project .wrapper--presentation .title--component span",
+        {
+          duration: 1,
+          stagger: 0.01,
+          y: "0px",
+          x: "0px",
+          skewX: "0deg",
+          skewY: "0deg",
+          ease: "expo.inOut"
+        },
+        "start"
+      )
+      .to(
+        ".wrapper--presentation .description",
+        {
+          x: "0px",
+          y: "0px",
+          opacity: 1
+        },
+        "start+=0.6"
+      )
+      .to(
+        ".wrapper--presentation .wrapper--img",
+        { y: "0px", x: "0px", opacity: 1 },
+        "start+=0.6"
+      );
   },
   methods: {
     getProject() {
@@ -197,16 +192,16 @@ export default {
     onIntersectT(observer) {
       this.isVisible = observer.isIntersecting;
       let target = observer.entries[0].target;
-      if (this.isVisible) {
+      if (this.isVisible && this.mounted_component == true) {
         gsap
           .timeline()
-          .set(".title--component span", {
+          .set(".title--component span.letters", {
             skewX: "20deg",
             skewY: "20deg",
             y: "-120%",
             ease: "expo.inOut"
           })
-          .to(".title--component span", {
+          .to(".title--component span.letters", {
             duration: 1,
             stagger: 0.02,
             y: "0%",
@@ -215,6 +210,18 @@ export default {
             ease: "expo.inOut"
           });
       }
+      this.mounted_component = false;
+    }
+  },
+  transition: {
+    css: false,
+    leave(el, done) {
+      gsap
+        .timeline()
+        .to(".project", {
+          opacity: 0
+        })
+        .add(() => done());
     }
   }
 };
@@ -223,11 +230,16 @@ export default {
 <style lang="scss">
 .project {
   padding-top: 80px;
-  opacity: 0;
+
   .wrapper--presentation {
+    opacity: 0;
     h1 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 70px;
+      margin-top: 2rem;
+      @media screen and (min-width: $laptop) {
+        margin-bottom: 50px;
+      }
     }
 
     .wrapper--img {
@@ -298,12 +310,16 @@ export default {
   .wrapper--other-projects {
     display: flex;
     margin: 60px 0;
+    flex-wrap: wrap;
     .wrapper--other--project {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 50%;
+      width: 100%;
+      @media screen and(min-width: $laptop) {
+        width: 50%;
+      }
       margin-top: 100px;
       h1 {
         margin: 0;
@@ -319,7 +335,7 @@ export default {
       }
       h1 {
         margin: 0;
-        font-size: 22px;
+        font-size: 30px;
         @media screen and(min-width:$tablet) {
           font-size: 42px;
         }
@@ -327,6 +343,12 @@ export default {
       .wrapper--square--img {
         display: none;
         @media screen and(min-width:$tablet) {
+          text-align: center;
+          display: inherit;
+          display: flex;
+          margin: 0 5rem 0 0;
+        }
+        @media screen and(min-width:$laptop) {
           display: inherit;
         }
       }

@@ -1,14 +1,14 @@
 <template>
-  <div class="info--card" v-intersect="onIntersect">
-    <div class="title" v-intersect="onIntersect">{{ career.title }}</div>
+  <div class="info--card">
+    <div class="title">{{ career.title }}</div>
     <div class="wrapper--career" v-for="(item, i) in career.content" :key="i">
-      <p class="subtitle" v-intersect="onIntersect">{{ item.title }}</p>
+      <p class="subtitle">{{ item.title }}</p>
       <p class="year">{{ item.year }}</p>
-      <p class="content" v-intersect="onIntersect">
+      <p class="content">
         {{ item.content }}
       </p>
 
-      <div class="separator" v-intersect="onIntersect"></div>
+      <div class="separator"></div>
     </div>
   </div>
 </template>
