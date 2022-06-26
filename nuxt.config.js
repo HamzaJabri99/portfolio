@@ -1,14 +1,9 @@
-const routerBase = (process.env.DEPLOY_ENV = "GH_PAGES"
-  ? {
-      router: {
-        base: "/portfolio/"
-      }
-    }
-  : {});
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: "static",
-
+  router: {
+    base: "/portfolio/"
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "portfolio",
@@ -42,7 +37,6 @@ export default {
   styleResources: {
     scss: ["~/assets/scss/*.scss"]
   },
-  ...routerBase,
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {}
 };
