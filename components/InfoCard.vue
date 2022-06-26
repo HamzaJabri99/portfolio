@@ -44,12 +44,12 @@ export default {
 
 <style lang="scss">
 .info--card {
-  color: #fff;
+  color: #14213d;
 
   .title {
     text-align: left;
     font-size: 20px;
-    color: red;
+    color: #f4acb7;
     margin-top: 40px;
     line-height: 10px;
     opacity: 0;
@@ -72,7 +72,7 @@ export default {
     }
     .separator {
       height: 1px;
-      background: #fff;
+      background: #14213d;
       margin-top: 40px;
       opacity: 0;
       transform: translateX(-40px);
@@ -90,14 +90,14 @@ export default {
     }
   }
   @media screen and (min-width: $laptop) {
-    color: #fff;
+    color: #14213d;
     text-align: left;
     .title {
       font-size: 20px;
-      color: red;
+      color: #f4acb7;
       margin-top: 40px;
       line-height: 10px;
-      text-decoration: underline;
+
       font-family: "Text";
       opacity: 0;
       transform: translateX(-40px);
@@ -113,7 +113,7 @@ export default {
       }
       .separator {
         height: 1px;
-        background: #fff;
+        background: #14213d;
         margin-top: 40px;
       }
       .year {

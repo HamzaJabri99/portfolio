@@ -8,11 +8,7 @@
       </div>
 
       <div class="wrapper--img" v-intersect="onIntersect">
-        <img
-          :src="require(`~/assets/imgs/5252.jpg`)"
-          alt=""
-          v-intersect="onIntersect"
-        />
+        <img :src="require(`~/assets/imgs/52522.jpg`)" alt="" />
       </div>
       <p class="presentation--pitch" v-intersect="onIntersect">
         junior fullstack developer, Recently graduated as a software and website
@@ -34,12 +30,19 @@
       <button>French CV</button>
     </div> -->
       <div class="download">
-        <button
-          href="https://www.dropbox.com/s/4bov1b6qiuvkau3/mon_CV%20%282%29.pdf?dl=0"
+        <a
+          class="btn"
+          href="https://drive.google.com/file/d/1WqHyAk2Yjh5GLNrPmYFYmBaeaIjeI4b9/view"
+          target="_blank"
         >
           DOWNLOAD CV
-        </button>
-        <button>TÉLECHARGER CV</button>
+        </a>
+        <a
+          href="https://drive.google.com/file/d/1zx-FvElSDz4HEQIESmeV33UHOeioa5sF/view"
+          target="_blank"
+          class="btn"
+          >TÉLECHARGER CV</a
+        >
       </div>
     </div>
     <div
@@ -182,6 +185,12 @@ export default {
     this.loadPage();
   },
   methods: {
+    downloadFile(filePath) {
+      var link = document.createElement("a");
+      link.href = filePath;
+      link.download = filePath.substr(filePath.lastIndexOf("/") + 1);
+      link.click();
+    },
     onIntersectT(observer) {
       this.isVisible = observer.isIntersecting;
       let target = observer.entries[0].target;
@@ -278,6 +287,16 @@ export default {
               ease: "expo.inOut"
             });
           }
+          case "wrapper--img": {
+            gsap.timeline().to(target.querySelectorAll("img"), {
+              stagger: 0.1,
+              duration: 1,
+              x: "0px",
+              y: "0px",
+              opacity: 1,
+              ease: "expo.inOut"
+            });
+          }
         }
       }
     }
@@ -324,13 +343,23 @@ export default {
       }
     }
     .wrapper--img {
-      max-width: 80vw;
-      margin: 15px auto;
-
+      width: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-left: 15%;
       img {
         width: 100%;
         height: auto;
         border-radius: 10px;
+        opacity: 0;
+        margin: 15px 3rem;
+        transform: translateX(-15rem);
+        @media screen and(min-width:$laptop) {
+          width: 50%;
+          margin: 15px 25rem;
+        }
       }
     }
     .presentation--pitch {
@@ -348,13 +377,13 @@ export default {
     }
   }
   .wrapper--career {
-    background: $black;
+    background: #d9d9d9;
     border-radius: 10px;
     width: 100%;
     padding: 30px 40px;
     box-sizing: border-box;
     @media screen and(min-width:$laptop) {
-      background: $black;
+      background: #d9d9d9;
       border-radius: 10px;
       width: 100%;
       padding: 30px 40px;
@@ -432,8 +461,8 @@ export default {
     justify-content: center;
     align-items: center;
     padding-bottom: 1rem;
-    button {
-      border: 2px solid white;
+    .btn {
+      border: 1px solid white;
       margin: 0 1rem;
       border-radius: 5px;
       background-color: white;
@@ -446,8 +475,14 @@ export default {
       transition: all 0.3s ease-in-out;
       outline: red;
       font-size: 15px;
+      height: 50px;
+      width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    button:hover {
+    .btn:hover {
+      background: #f4acb7;
       transform: scale(0.99);
       opacity: 1;
     }
@@ -457,11 +492,9 @@ export default {
       justify-content: center;
       align-items: center;
       padding-bottom: 1rem;
-      button {
-        border: 2px solid white;
+      .btn {
         margin: 0 1rem;
         border-radius: 5px;
-        background-color: white;
         font-weight: bolder;
         font-family: "Title";
         cursor: pointer;
@@ -472,9 +505,12 @@ export default {
         outline: red;
         font-size: 18px;
       }
-      button:hover {
+      .btn:hover {
         transform: scale(0.99);
         opacity: 1;
+      }
+      .btn:active {
+        transform: scale(1.2);
       }
     }
   }
@@ -491,13 +527,16 @@ export default {
   }
   .wrapper--infos {
     .title {
-      color: #ff022a;
+      color: #f4acb7;
       text-transform: uppercase;
     }
     @media screen and(min-width:$laptop) {
+      color: #f4acb7;
       display: flex;
     }
-
+    h3 {
+      color: black;
+    }
     // > div {
     //       .title {
     //         color: #ff022a;
@@ -659,12 +698,17 @@ export default {
   }
   .con {
     margin-top: 4rem;
+    position: relative;
   }
-  .under {
-    background: #ff93a3;
+  .con:after {
+    content: "";
+    position: absolute;
     height: 2px;
-    text-align: center;
+    width: 50%;
+    bottom: -10px;
+    left: 0rem;
     width: 100%;
+    background: #f4acb7;
   }
 }
 </style>

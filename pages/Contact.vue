@@ -113,7 +113,7 @@ export default {
           x: "0px",
           y: "0px",
           opacity: 1.2,
-          duration: 1,
+          duration: 0.5,
           delay: 0.2,
           skewY: "0deg",
           skewX: "0deg",
@@ -188,7 +188,20 @@ export default {
   font-family: Poppins;
   font-weight: 400;
 }
+.overlay h1:after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  top: 114px;
+  margin: 0rem auto;
+  left: 0;
+  right: 0;
+  width: 40%;
 
+  transform: translateY(0%);
+  transform: translateX(0%);
+  border-bottom: 2px solid rgb(255, 103, 103);
+}
 form {
   max-width: 550px;
   width: 100%;
@@ -231,22 +244,17 @@ textarea::-webkit-scrollbar-thumb {
 }
 input[type="submit"] {
   margin-top: 30px;
-  width: 90%;
 
-  background: linear-gradient(to right, rgb(136, 134, 134), rgb(143, 143, 143));
+  background: linear-gradient(to right, rgb(71, 71, 71), rgb(114, 114, 114));
   color: white;
   font-size: 17px;
   cursor: pointer;
   border-radius: 3px;
-  width: 100%;
-}
-.error {
-  color: red;
-}
-.error-border {
-  border-bottom: 1px solid red;
-}
-#success {
-  color: #28a745;
+  width: 80%;
+  transition: all 0.1s;
+  &:active {
+    border: none;
+    width: 85%;
+  }
 }
 </style>

@@ -1,44 +1,45 @@
 [
     {
         "poster": "logo1.jpg",
-        "title": "Project1",
-        "techno": "Vue.js",
-        "description":
-        "This project is about getting an image url and changing its filter with css filter props. using Vuex,  i learnt a lot from this project specialy the state management pattern in Vujs",
-        "role":"I did the whole FrontEnd Design and code from scratch just a side project and it's also on github ",
-        "project_img":{
-            "first":"",
-            "second":"",
-            "third":""
-
-        }
+        "title": "Rick & Morty Wiki",
+        "techno": "React.js",
+        "description": "This project is about getting All Related Data Using Rick & Morty Api. and making it customizable and filterable.",
+        "role": "I did the whole FrontEnd Design and code from scratch just a side project and it's also on",
+        "project": "project1",
+        "project_img": {
+            "first": "project1/first.png",
+            "second": "project1/second.png",
+            "third": "project1/third.png",
+            "fourth": "project1/fourth.png"
+        },
+        "gitHub": "https://github.com/HamzaJabri99/RickAndMortyWiki"
     },
     {
-        "poster": "logo2.jpg",
-        "title": "project2",
-        "techno": "Vue.js",
-        "description":
-        "This project is about getting an image url and changing its filter with css filter props. using Vuex,  i learnt a lot from this project specialy the state management pattern ",
-        "role":"I did the whole FrontEnd Design and code from scratch just a side project and it's also on github ",
-        "project_img":{
-            "first":"",
-            "second":"",
-            "third":""
-
-        }
+        "poster": "logo4.jpg",
+        "title": "Foodies",
+        "techno": "React.js",
+        "description": "This project is about getting foods api from spoonacular website and apllying search filters on response we get from it. with a modern design.",
+        "role": "I did the whole FrontEnd Design and code from scratch just a side project and it's also on",
+        "project_img": {
+            "first": "project2/first.png",
+            "second": "project2/second.png",
+            "third": "project2/third.png",
+            "fourth": "project2/fourth.png"
+        },
+        "gitHub": "https://github.com/HamzaJabri99/foodies"
     },
     {
         "poster": "logo3.jpg",
         "title": "project3",
         "techno": "Laravel & Vue.js",
-        "description":
-        "This project is about getting an image url and changing its filter with css filter props. using Vuex,  i learnt a lot from this project specialy the state management pattern ",
-        "role":"I did the whole FrontEnd Design and code from scratch just a side project and it's also on github ",
-        "project_img":{
-            "first":"",
-            "second":"",
-            "third":""
-
-        }
+        "description": "This project is about getting an image url and changing its filter with css filter props. using Vuex,  i learnt a lot from this project specialy the state management pattern ",
+        "role": "I did the whole FrontEnd Design and code from scratch just a side project and it's also on github ",
+        "project_img": {
+            "first": "project1/first.png",
+            "second": "project1/second.png",
+            "third": "project1/third.png",
+            "fourth": "project1/fourth.png"
+        },
+        "gitHub": "https://github.com/HamzaJabri99/RickAndMortyWiki"
     }
 ]

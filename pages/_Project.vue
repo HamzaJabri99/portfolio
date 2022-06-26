@@ -15,6 +15,7 @@
       <h2 v-intersect="onIntersect">My Role</h2>
       <p style="margin-bottom:20px" v-intersect="onIntersect">
         {{ project.role }}
+        <a :href="project.gitHub" target="blank" class="github">GitHub</a>
       </p>
       <h2 data-scroll v-intersect="onIntersect">Stack</h2>
       <p v-intersect="onIntersect">{{ project.techno }}</p>
@@ -28,24 +29,31 @@
           alt=""
         /> -->
       <div class="wrapper--img wrapper--first--img" v-intersect="onIntersect">
-        <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
+        <img
+          :src="require(`~/assets/imgs/${project.project_img.first}`)"
+          alt=""
+        />
       </div>
       <div class="wrapper--second--third--img">
         <div class="wrapper--img" v-intersect="onIntersect">
-          <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
+          <img
+            :src="require(`~/assets/imgs/${project.project_img.second}`)"
+            alt=""
+          />
         </div>
         <div class="wrapper--img" v-intersect="onIntersect">
-          <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
+          <img
+            :src="require(`~/assets/imgs/${project.project_img.third}`)"
+            alt=""
+          />
         </div>
       </div>
       <div class="wrapper--four--img">
         <div class="wrapper--img" v-intersect="onIntersect">
-          <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
-        </div>
-      </div>
-      <div class="wrapper--five--img">
-        <div class="wrapper--img" v-intersect="onIntersect">
-          <img :src="require(`~/assets/imgs/${project.poster}`)" alt="" />
+          <img
+            :src="require(`~/assets/imgs/${project.project_img.fourth}`)"
+            alt=""
+          />
         </div>
       </div>
     </div>
@@ -282,8 +290,8 @@ export default {
     .wrapper--second--third--img {
       @media screen and(min-width:$laptop) {
         display: flex;
+        gap: 1rem;
         .wrapper--img {
-          width: 50%;
           margin: 20px 0px;
         }
       }
@@ -381,6 +389,9 @@ export default {
     @media screen and(min-width:$laptop) {
       margin: 100px auto;
     }
+  }
+  .github {
+    border-bottom: 2px lightcoral solid;
   }
 }
 </style>

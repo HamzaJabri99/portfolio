@@ -2,10 +2,10 @@
   <div class="carousel" @keydown="checkSlide($event)" tabindex="0">
     <slot></slot>
     <button @click.prevent="next" class="btn btn-next">
-      <i class="fa fa-angle-right">=></i>
+      <i class="fa fa-angle-right">🡺</i>
     </button>
     <button @click.prevent="prev" class="btn btn-prev">
-      <i class="fa fa-angle-left"><=</i>
+      <i class="fa fa-angle-left">🡸</i>
     </button>
   </div>
 </template>
@@ -56,4 +56,13 @@ export default {
   }
 };
 </script>
-<style></style>
+<style lang="scss">
+.carousel {
+  button {
+    text-align: center;
+    border-radius: 15px;
+    .btn {
+    }
+  }
+}
+</style>

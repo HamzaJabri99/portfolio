@@ -21,6 +21,7 @@
         </nuxt-link>
       </carousel-slide>
     </carousel>
+    <p>More adjustments on Slider Are coming Soon :D</p>
   </div>
 </template>
 
@@ -82,14 +83,31 @@ export default {
 <style lang="scss">
 .projects {
   display: flex;
+  margin: 0 auto;
   justify-content: center;
+  flex-direction: column;
+  p {
+    text-align: center;
+    @media screen and(min-width:$laptop) {
+      margin: 0rem auto;
+    }
+  }
+  @media screen and(min-width:$laptop) {
+    flex-direction: column;
+  }
   opacity: 0;
   .carousel {
     position: relative;
     overflow: hidden;
-    width: 800px;
-    height: 500px;
+    width: 300px;
+    height: 400px;
+    @media screen and(min-width:$laptop) {
+      width: 800px;
+      height: 700px;
+    }
+
     z-index: 10;
+    margin: 0 auto;
   }
   .btn {
     padding: 5px 10px;
@@ -129,7 +147,13 @@ export default {
   }
   .carousel-slider img {
     width: 100%;
-    height: 100%;
+    height: 210px;
+
+    @media screen and(min-width: $laptop) {
+      width: 80%;
+      height: 400px;
+      margin: 0 5rem;
+    }
   }
   .projectNow {
     text-align: center;
