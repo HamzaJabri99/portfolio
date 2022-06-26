@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/Rick%20%26%20Morty%20Wiki", {data:[{}],fetch:{},mutations:void 0});

@@ -1,6 +1,6 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  mode: "static",
+  target: "static",
   router: {
     base: "/portfolio/"
   },
