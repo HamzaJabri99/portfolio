@@ -21,9 +21,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    "~/plugins/index.js"
-  ],
+  plugins: ["~/plugins/index.js"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -32,7 +30,7 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [ '@nuxtjs/style-resources',],
+  modules: ["@nuxtjs/style-resources"],
 
   styleResources: {
     scss: ["~/assets/scss/*.scss"]
