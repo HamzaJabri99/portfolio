@@ -50,7 +50,7 @@
         <input
           type="hidden"
           name="_next"
-          value="http://localhost:3000/Thanks"
+          value="https://github.com/HamzaJabri99/portfolio/blob/master/pages/Thanks.vue"
         />
         <input type="hidden" name="_captcha" value="false" />
       </form>
